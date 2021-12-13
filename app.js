@@ -1,64 +1,29 @@
-//const button = document.querySelectorAll(".togglejs");
-const button =document.querySelectorAll(".togglejs");
-const list = document.querySelectorAll(".toggle");
-const hum =document.querySelector(".fa-align-justify");
-const yap=document.querySelectorAll(".yap");
-const acitve =document.querySelector(".active");
-const mobile =document.querySelector(".mobile");
-console.log(mobile)
-//const nav =document.
-button.forEach(function(item, index, array){
-    console.log(index);
-    console.log(list[index]);
-    button[index].addEventListener("click", function () {
-      list[index].classList.toggle("show");
-  });
-});
-hum.addEventListener("click", () => {
-    yap.forEach(function (item, index, array) {
-      mobile.classList.toggle("active1");
-      yap[index].classList.toggle("active");
-    });
-  });
-/*mobile.forEach(function(item, index, array){
-  console.log(index);
-  console.log(list[index]);
-  hum.addEventListener("click", function () {
-    yap[index].classList.toggle("active");
-});
-});
+const main_list=document.querySelectorAll(".main-list>li>a");
+const Sub_list=document.querySelectorAll(".Sub-list");
 
-  hum.addEventListener("click", function () {
-    mobile.classList.toggle("active");
-    /*yap.forEach(function(item, index, array){
-      
-    yap[index].classList.toggle("active");
-  });*/
+/**Get all siblings */
+let sibling=(item)=>{
+    /**Sub_list.indexof(item); */
+    Sub_list.forEach(e => {
+        if (e!==item){
+            e.classList.remove("active");
+            e.style.setProperty("--angle", '180deg');
+        }
+    })
+}
 
-//
-
-  
-    /*button.classList.toggle("redbackgouend");*/
-  
- /* buttons.addEventListener("click", function () {
-    
-    list.classList.toggle("show");
-    
-    buttons.classList.toggle("redbackgouend");*/
- 
-
-hum.addEventListener("click", function () {  
- 
-});
-/*
-
-button.addEventListener("click", function () {
-    
-    list.classList.toggle("show");
-    
-    button.classList.toggle("redbackgouend");
-  });
-*/
- 
-
-
+main_list.forEach((item,key)=>{
+    item.parentElement.addEventListener("click",()=>{
+        Sub_list[key].classList.toggle("active");
+        item.style.setProperty("--angle", '-180deg');
+        item.style.setProperty("--distance", '50%');
+        sibling(Sub_list[key]);
+       
+    })
+}) 
+ const hamberger=document.getElementById("hamberger");
+ const nav =document.querySelector("nav");
+hamberger.addEventListener("click",()=>{
+    nav.classList.toggle("active_Nav");
+    document.querySelector(".main-list").classList.toggle("active_main");
+})
